@@ -23,6 +23,7 @@ if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
   ren "%ProgramFiles%\MacType\EasyHK64.dll.bak" EasyHK64.dll
   ren "%ProgramFiles%\MacType\EasyHK32.dll.bak" EasyHK32.dll
 )
+del "%ProgramFiles%\MacType\UserParams.ini"
 
 :ERROR
 if defined ERR_MSG echo %ERR_MSG%

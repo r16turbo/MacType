@@ -33,6 +33,8 @@ if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
   icacls "%ProgramFiles%\MacType\EasyHK64.dll" /setowner SYSTEM
   icacls "%ProgramFiles%\MacType\EasyHK32.dll" /setowner SYSTEM
 )
+copy UserParams.ini "%ProgramFiles%\MacType\"
+icacls "%ProgramFiles%\MacType\UserParams.ini" /setowner SYSTEM
 
 :ERROR
 if defined ERR_MSG echo %ERR_MSG%
