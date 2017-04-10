@@ -10,16 +10,16 @@ cd /d %~dp0
 
 rem Install MacType-Patch
 if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
-  call :swap "%SystemRoot%\System32" EasyHK32.dll Easyhk32.dll .bak SYSTEM
-  call :swap "%ProgramFiles%\MacType" EasyHK32.dll EasyHK32.dll .bak SYSTEM
+  call :swap "%ProgramFiles%\MacType" EasyHK32.dll .bak
 ) else (
-  call :swap "%SystemRoot%\System32" EasyHK64.dll Easyhk64.dll .bak SYSTEM
-  call :swap "%SystemRoot%\SysWOW64" EasyHK32.dll Easyhk32.dll .bak SYSTEM
-  call :swap "%ProgramFiles%\MacType" EasyHK64.dll EasyHK64.dll .bak SYSTEM
-  call :swap "%ProgramFiles%\MacType" EasyHK32.dll EasyHK32.dll .bak SYSTEM
+  call :swap "%ProgramFiles%\MacType" EasyHK64.dll .bak
+  call :swap "%ProgramFiles%\MacType" EasyHK32.dll .bak
 )
 copy UserParams.ini "%ProgramFiles%\MacType\"
-icacls "%ProgramFiles%\MacType\UserParams.ini" /setowner SYSTEM
+
+rem (re)set Owner and ACL
+icacls "%ProgramFiles%\MacType\*" /setowner SYSTEM
+icacls "%ProgramFiles%\MacType\*" /reset
 
 :ERROR
 if defined ERR_MSG echo %ERR_MSG%
@@ -38,7 +38,6 @@ rem   swap dir source target prefix user
 :swap
   if not exist "%~1" set ERR_MSG=%~1 not found. & goto ERROR
   if not exist "%~2" set ERR_MSG=%~2 not found. & goto ERROR
-  if not exist "%~3" set ERR_MSG=%~3 not found. & goto ERROR
-  ren "%~1\%~3" %~3%~4 && copy %~2 "%~1\" && icacls "%~1\%~2" /setowner %~5
-  if errorlevel 1 set ERR_MSG=swap "%~2" to "%~1\%~3" failed. & goto ERROR
+  ren "%~1\%~2" %~2%~4 && copy %~2 "%~1\"
+  if errorlevel 1 set ERR_MSG=swap "%~2" to "%~1\%~2" failed. & goto ERROR
 exit /b 0

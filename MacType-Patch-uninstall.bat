@@ -7,11 +7,8 @@ if errorlevel 1 set ERR_MSG=Permission denied. & goto ERROR
 
 rem Uninstall MacType-Patch
 if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
-  call :revert "%SystemRoot%\System32" Easyhk32.dll .bak
   call :revert "%ProgramFiles%\MacType" EasyHK32.dll .bak
 ) else (
-  call :revert "%SystemRoot%\System32" Easyhk64.dll .bak
-  call :revert "%SystemRoot%\SysWOW64" Easyhk32.dll .bak
   call :revert "%ProgramFiles%\MacType" EasyHK64.dll .bak
   call :revert "%ProgramFiles%\MacType" EasyHK32.dll .bak
 )
