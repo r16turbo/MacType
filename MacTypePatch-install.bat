@@ -10,8 +10,11 @@ cd /d %~dp0
 
 rem Install MacType-Patch
 if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
+  del "%SystemRoot%\System32\Easyhk32.dll"
   call :swap "%ProgramFiles%\MacType" EasyHK32.dll .bak
 ) else (
+  del "%SystemRoot%\System32\Easyhk64.dll"
+  del "%SystemRoot%\SysWOW64\Easyhk32.dll"
   call :swap "%ProgramFiles%\MacType" EasyHK64.dll .bak
   call :swap "%ProgramFiles%\MacType" EasyHK32.dll .bak
 )
