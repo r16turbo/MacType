@@ -18,8 +18,8 @@ if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
 copy UserParams.ini "%ProgramFiles%\MacType\"
 
 rem (re)set Owner and ACL
-icacls "%ProgramFiles%\MacType\*" /setowner SYSTEM
-icacls "%ProgramFiles%\MacType\*" /reset
+icacls "%ProgramFiles%\MacType\*" /setowner SYSTEM /T
+icacls "%ProgramFiles%\MacType\*" /reset /T
 
 :ERROR
 if defined ERR_MSG echo %ERR_MSG%
