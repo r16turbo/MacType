@@ -41,6 +41,6 @@ rem   swap dir source target prefix user
 :swap
   if not exist "%~1" set ERR_MSG=%~1 not found. & goto ERROR
   if not exist "%~2" set ERR_MSG=%~2 not found. & goto ERROR
-  ren "%~1\%~2" %~2%~4 && copy %~2 "%~1\"
+  ren "%~1\%~2" %~2%~3 && copy %~2 "%~1\"
   if errorlevel 1 set ERR_MSG=swap "%~2" to "%~1\%~2" failed. & goto ERROR
 exit /b 0
