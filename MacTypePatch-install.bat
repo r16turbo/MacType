@@ -18,7 +18,9 @@ if "%PROCESSOR_ARCHITECTURE%" EQU "x86" (
   call :swap "%ProgramFiles%\MacType" EasyHK64.dll .bak
   call :swap "%ProgramFiles%\MacType" EasyHK32.dll .bak
 )
-copy UserParams.ini "%ProgramFiles%\MacType\"
+if not exist "%ProgramFiles%\MacType\UserParams.ini" (
+  copy UserParams.ini "%ProgramFiles%\MacType\"
+)
 
 rem (re)set Owner and ACL
 icacls "%ProgramFiles%\MacType\*" /setowner SYSTEM /T
