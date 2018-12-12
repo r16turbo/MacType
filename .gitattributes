@@ -1,6 +1,0 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Text file
-*.vbs   diff=astextplain
-*.ini   diff=astextplain
