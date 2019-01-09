@@ -26,6 +26,7 @@ rem (re)set Owner and ACL
 icacls "%ProgramFiles%\MacType\*" /setowner SYSTEM /T
 icacls "%ProgramFiles%\MacType\*" /reset /T
 icacls "%ProgramFiles%\MacType\ini" /grant Users:(OI)(CI)M
+icacls "%ProgramFiles%\MacType\UserParams.ini" /grant Users:(M)
 
 :ERROR
 if defined ERR_MSG echo %ERR_MSG%
